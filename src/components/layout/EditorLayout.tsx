@@ -86,8 +86,8 @@ export function EditorLayout({
       onKeyDown={handleKeyDown}
       style={{
         display: "grid",
-        gridTemplateColumns: "320px minmax(0, 1fr) 380px",
-        gridTemplateRows: "56px minmax(0, 1fr) 96px",
+        gridTemplateColumns: "220px minmax(0, 1fr) 220px",
+        gridTemplateRows: "56px minmax(0, 1fr) 88px",
         height: "100vh",
         background: "#e5e7eb",
         outline: "none",
@@ -142,7 +142,7 @@ export function EditorLayout({
           minHeight: 0,
           overflow: "hidden",
           background: "#f3f4f6",
-          padding: 16,
+          padding: 10,
           boxSizing: "border-box",
         }}
       >
@@ -151,7 +151,7 @@ export function EditorLayout({
             height: "100%",
             minHeight: 0,
             border: "1px solid #d1d5db",
-            borderRadius: 12,
+            borderRadius: 10,
             overflow: "hidden",
             background: "#ffffff",
             boxShadow: "0 1px 2px rgba(0,0,0,0.04)",

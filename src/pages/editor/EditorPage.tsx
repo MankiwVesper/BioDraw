@@ -57,6 +57,11 @@ function pushHistory(
   };
 }
 
+function canUpdateLockedObject(patch: Partial<SceneObject>) {
+  const keys = Object.keys(patch);
+  return keys.every((key) => key === "locked" || key === "visible");
+}
+
 export function EditorPage() {
   const [history, setHistory] = useState<HistoryState>({
     past: [],
@@ -71,6 +76,17 @@ export function EditorPage() {
   const handleUpdateObject = useCallback(
     (objectId: string, patch: Partial<SceneObject>) => {
       setHistory((prev) => {
+        const currentObject =
+          prev.present.objects.find((object) => object.id === objectId) ?? null;
+
+        if (!currentObject) {
+          return prev;
+        }
+
+        if (currentObject.locked && !canUpdateLockedObject(patch)) {
+          return prev;
+        }
+
         const nextProject: ProjectDocument = {
           ...prev.present,
           objects: prev.present.objects.map((object) =>
@@ -88,6 +104,13 @@ export function EditorPage() {
 
   const handleDeleteObject = useCallback((objectId: string) => {
     setHistory((prev) => {
+      const currentObject =
+        prev.present.objects.find((object) => object.id === objectId) ?? null;
+
+      if (!currentObject || currentObject.locked) {
+        return prev;
+      }
+
       const nextProject: ProjectDocument = {
         ...prev.present,
         objects: prev.present.objects.filter(
@@ -108,7 +131,7 @@ export function EditorPage() {
       const sourceObject =
         prev.present.objects.find((object) => object.id === objectId) ?? null;
 
-      if (!sourceObject) {
+      if (!sourceObject || sourceObject.locked) {
         return prev;
       }
 

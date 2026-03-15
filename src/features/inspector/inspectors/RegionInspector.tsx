@@ -27,17 +27,6 @@ export function RegionInspector({
 }: RegionInspectorProps) {
   return (
     <Section title="区域属性">
-      <FieldGrid columns={1}>
-        <FormField label="标签">
-          <TextInput
-            value={object.label}
-            onChange={(value) => onUpdateObject(object.id, { label: value })}
-          />
-        </FormField>
-      </FieldGrid>
-
-      <div style={{ height: 8 }} />
-
       <FieldGrid columns={2}>
         <FormField label="区域角色">
           <SelectInput

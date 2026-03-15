@@ -8,7 +8,6 @@ import {
   FormField,
   Section,
   SelectInput,
-  TextInput,
 } from "./shared";
 
 interface ProteinInspectorProps {
@@ -22,18 +21,7 @@ export function ProteinInspector({
 }: ProteinInspectorProps) {
   return (
     <Section title="蛋白属性">
-      <FieldGrid columns={1}>
-        <FormField label="标签">
-          <TextInput
-            value={object.label ?? ""}
-            onChange={(value) => onUpdateObject(object.id, { label: value })}
-          />
-        </FormField>
-      </FieldGrid>
-
-      <div style={{ height: 8 }} />
-
-      <FieldGrid columns={1}>
+      <FieldGrid columns={2}>
         <FormField label="蛋白类型">
           <SelectInput
             value={object.proteinType}
@@ -50,7 +38,7 @@ export function ProteinInspector({
         </FormField>
       </FieldGrid>
 
-      <div style={{ height: 8 }} />
+      <div style={{ height: 6 }} />
 
       <FieldGrid columns={2}>
         <FormField label="激活">

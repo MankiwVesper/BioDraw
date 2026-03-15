@@ -1,8 +1,6 @@
 import type { SceneObject } from "../../../domain/objects/objectTypes";
 import {
-  CheckboxInput,
-  FieldGrid,
-  FormField,
+  InlineField,
   NumberInput,
   ReadonlyValue,
   Section,
@@ -14,90 +12,111 @@ interface CommonInspectorProps {
   onUpdateObject: (objectId: string, patch: Partial<SceneObject>) => void;
 }
 
+function hasLabelField(
+  object: SceneObject,
+): object is SceneObject & { label?: string } {
+  return "label" in object;
+}
+
 export function CommonInspector({
   object,
   onUpdateObject,
 }: CommonInspectorProps) {
+  const isLocked = Boolean(object.locked);
+
   return (
     <>
       <Section title="基础信息">
-        <FieldGrid columns={2}>
-          <FormField label="类型">
-            <ReadonlyValue value={object.type} />
-          </FormField>
-
-          <FormField label="层级">
-            <ReadonlyValue value={object.zIndex ?? "-"} />
-          </FormField>
-        </FieldGrid>
-
-        <div style={{ height: 8 }} />
-
-        <FieldGrid columns={1}>
-          <FormField label="名称">
+        <div
+          style={{
+            display: "grid",
+            gap: 6,
+          }}
+        >
+          <InlineField
+            label="名称"
+            labelWidth={28}
+            hint={isLocked ? "对象已锁定，不能修改名称" : undefined}
+          >
             <TextInput
               value={object.name ?? ""}
+              disabled={isLocked}
               onChange={(value) => onUpdateObject(object.id, { name: value })}
             />
-          </FormField>
-        </FieldGrid>
+          </InlineField>
 
-        <div style={{ height: 8 }} />
-
-        <FieldGrid columns={2}>
-          <FormField label="可见">
-            <CheckboxInput
-              checked={object.visible}
-              onChange={(checked) =>
-                onUpdateObject(object.id, { visible: checked })
-              }
-            />
-          </FormField>
-
-          <FormField label="锁定">
-            <ReadonlyValue value={object.locked ? "是" : "否"} />
-          </FormField>
-        </FieldGrid>
+          {hasLabelField(object) ? (
+            <InlineField label="标签" labelWidth={28}>
+              <TextInput
+                value={object.label ?? ""}
+                disabled={isLocked}
+                onChange={(value) =>
+                  onUpdateObject(object.id, { label: value })
+                }
+              />
+            </InlineField>
+          ) : null}
+        </div>
       </Section>
 
-      <Section title="位置与尺寸">
-        <FieldGrid columns={2}>
-          <FormField label="X">
+      <Section title="位置与尺寸" description={isLocked ? "已锁定" : undefined}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+            gap: 6,
+          }}
+        >
+          <InlineField
+            label="X"
+            labelWidth={16}
+            hint={isLocked ? "锁定时不可修改" : undefined}
+          >
             <NumberInput
               value={object.x}
+              disabled={isLocked}
               onChange={(value) => onUpdateObject(object.id, { x: value })}
             />
-          </FormField>
+          </InlineField>
 
-          <FormField label="Y">
+          <InlineField
+            label="Y"
+            labelWidth={16}
+            hint={isLocked ? "锁定时不可修改" : undefined}
+          >
             <NumberInput
               value={object.y}
+              disabled={isLocked}
               onChange={(value) => onUpdateObject(object.id, { y: value })}
             />
-          </FormField>
-        </FieldGrid>
+          </InlineField>
 
-        <div style={{ height: 8 }} />
+          <InlineField label="层级" labelWidth={28}>
+            <ReadonlyValue value={object.zIndex ?? "-"} />
+          </InlineField>
+        </div>
 
-        <FieldGrid columns={2}>
-          <FormField label="宽度">
+        <div style={{ height: 6 }} />
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+            gap: 6,
+          }}
+        >
+          <InlineField label="宽" labelWidth={16}>
             <ReadonlyValue value={object.width ?? "-"} />
-          </FormField>
+          </InlineField>
 
-          <FormField label="高度">
+          <InlineField label="高" labelWidth={16}>
             <ReadonlyValue value={object.height ?? "-"} />
-          </FormField>
-        </FieldGrid>
+          </InlineField>
 
-        <div style={{ height: 8 }} />
-
-        <FieldGrid columns={2}>
-          <FormField label="旋转">
+          <InlineField label="旋转" labelWidth={28}>
             <ReadonlyValue value={object.rotation ?? "-"} />
-          </FormField>
-
-          <div />
-        </FieldGrid>
+          </InlineField>
+        </div>
       </Section>
     </>
   );

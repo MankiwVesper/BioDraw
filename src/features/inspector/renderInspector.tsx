@@ -58,6 +58,8 @@ export default function RenderInspector({
     return <EmptyInspector />;
   }
 
+  const isLocked = Boolean(selectedObject.locked);
+
   return (
     <div
       style={{
@@ -69,10 +71,19 @@ export default function RenderInspector({
         object={selectedObject}
         onUpdateObject={onUpdateObject}
       />
-      <SpecificInspector
-        object={selectedObject}
-        onUpdateObject={onUpdateObject}
-      />
+
+      <div
+        style={{
+          opacity: isLocked ? 0.55 : 1,
+          pointerEvents: isLocked ? "none" : "auto",
+          transition: "opacity 120ms ease",
+        }}
+      >
+        <SpecificInspector
+          object={selectedObject}
+          onUpdateObject={onUpdateObject}
+        />
+      </div>
     </div>
   );
 }

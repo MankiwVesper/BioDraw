@@ -253,10 +253,11 @@ function ToolButton(props: {
       onClick={props.onClick}
       title={props.title}
       style={{
-        minWidth: 30,
-        height: 24,
-        padding: "0 6px",
+        minWidth: 26,
+        height: 22,
+        padding: "0 5px",
         fontSize: 11,
+        fontWeight: 600,
         border: "1px solid #d1d5db",
         borderRadius: 6,
         background: "#ffffff",
@@ -308,7 +309,7 @@ export function ObjectListPanel({
     >
       <div
         style={{
-          padding: "12px 12px 10px",
+          padding: "10px 10px 8px",
           borderBottom: "1px solid #e5e7eb",
           flexShrink: 0,
           background: "#fafafa",
@@ -316,19 +317,19 @@ export function ObjectListPanel({
       >
         <div
           style={{
-            fontSize: 14,
+            fontSize: 13,
             fontWeight: 700,
             color: "#111827",
-            marginBottom: 4,
+            marginBottom: 2,
           }}
         >
           对象列表
         </div>
         <div
           style={{
-            fontSize: 12,
+            fontSize: 11,
             color: "#6b7280",
-            marginBottom: 10,
+            marginBottom: 8,
           }}
         >
           共 {filteredObjects.length} / {objects.length} 个对象
@@ -337,8 +338,8 @@ export function ObjectListPanel({
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) 104px",
-            gap: 8,
+            gridTemplateColumns: "minmax(0, 1fr) 96px",
+            gap: 6,
             alignItems: "center",
           }}
         >
@@ -348,11 +349,12 @@ export function ObjectListPanel({
             placeholder="搜索对象..."
             style={{
               width: "100%",
+              height: 30,
               boxSizing: "border-box",
-              padding: "7px 9px",
+              padding: "5px 8px",
               fontSize: 12,
               border: "1px solid #d1d5db",
-              borderRadius: 8,
+              borderRadius: 7,
               background: "#fff",
               outline: "none",
             }}
@@ -365,11 +367,12 @@ export function ObjectListPanel({
             }
             style={{
               width: "100%",
+              height: 30,
               boxSizing: "border-box",
-              padding: "7px 9px",
+              padding: "5px 8px",
               fontSize: 12,
               border: "1px solid #d1d5db",
-              borderRadius: 8,
+              borderRadius: 7,
               background: "#fff",
               outline: "none",
             }}
@@ -399,17 +402,17 @@ export function ObjectListPanel({
           flex: 1,
           minHeight: 0,
           overflowY: "auto",
-          padding: 10,
+          padding: 8,
           background: "#ffffff",
         }}
       >
         {filteredObjects.length === 0 ? (
           <div
             style={{
-              padding: 12,
+              padding: 10,
               fontSize: 12,
               color: "#6b7280",
-              lineHeight: 1.6,
+              lineHeight: 1.5,
             }}
           >
             没有匹配的对象。
@@ -430,10 +433,10 @@ export function ObjectListPanel({
                   display: "block",
                   width: "100%",
                   textAlign: "left",
-                  padding: "8px 10px",
-                  marginBottom: 8,
+                  padding: "7px 8px",
+                  marginBottom: 6,
                   border: selected ? "1px solid #60a5fa" : "1px solid #e5e7eb",
-                  borderRadius: 10,
+                  borderRadius: 8,
                   background: selected ? "#eff6ff" : "#ffffff",
                   cursor: "pointer",
                   opacity: object.visible ? 1 : 0.6,
@@ -443,7 +446,7 @@ export function ObjectListPanel({
                   style={{
                     display: "flex",
                     alignItems: "flex-start",
-                    gap: 8,
+                    gap: 6,
                   }}
                 >
                   <div style={{ minWidth: 0, flex: 1 }}>
@@ -452,8 +455,8 @@ export function ObjectListPanel({
                         fontSize: 12,
                         fontWeight: 600,
                         color: "#111827",
-                        marginBottom: 3,
-                        lineHeight: 1.4,
+                        marginBottom: 2,
+                        lineHeight: 1.35,
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
@@ -466,7 +469,7 @@ export function ObjectListPanel({
                       style={{
                         fontSize: 11,
                         color: "#6b7280",
-                        lineHeight: 1.4,
+                        lineHeight: 1.35,
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
@@ -480,7 +483,7 @@ export function ObjectListPanel({
 
                   <div
                     style={{
-                      width: 70,
+                      width: 60,
                       flexShrink: 0,
                       display: "flex",
                       gap: 4,

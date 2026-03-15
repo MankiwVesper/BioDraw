@@ -9,7 +9,6 @@ import {
   NumberInput,
   ReadonlyValue,
   Section,
-  TextInput,
 } from "./shared";
 
 interface ArrowInspectorProps {
@@ -58,17 +57,6 @@ export function ArrowInspector({
 
         <FormField label="线型">
           <ReadonlyValue value={object.arrowStyle ?? "-"} />
-        </FormField>
-      </FieldGrid>
-
-      <div style={{ height: 8 }} />
-
-      <FieldGrid columns={1}>
-        <FormField label="标签">
-          <TextInput
-            value={object.label ?? ""}
-            onChange={(value) => onUpdateObject(object.id, { label: value })}
-          />
         </FormField>
       </FieldGrid>
     </Section>
