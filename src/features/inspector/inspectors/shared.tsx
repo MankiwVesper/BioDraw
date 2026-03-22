@@ -232,6 +232,41 @@ export function TextInput(props: {
   );
 }
 
+export function TextareaInput({
+  value,
+  rows = 4,
+  disabled,
+  onChange,
+}: {
+  value: string;
+  rows?: number;
+  disabled?: boolean;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <textarea
+      value={value}
+      rows={rows}
+      disabled={disabled}
+      onChange={(event) => onChange(event.target.value)}
+      style={{
+        width: "100%",
+        minHeight: rows * 22,
+        resize: "vertical",
+        border: "1px solid #d0d7de",
+        borderRadius: 6,
+        padding: "6px 8px",
+        fontSize: 12,
+        lineHeight: 1.5,
+        boxSizing: "border-box",
+        background: disabled ? "#f6f8fa" : "#ffffff",
+        color: disabled ? "#8c959f" : "#24292f",
+        outline: "none",
+      }}
+    />
+  );
+}
+
 export function NumberInput(props: {
   value: number;
   onChange: (value: number) => void;

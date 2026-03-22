@@ -1,16 +1,23 @@
-import { CanvasRoot } from '../../canvas/CanvasRoot'
-import type { ProjectDocument } from '../../domain/project/projectTypes'
+import { CanvasRoot } from "../../canvas/CanvasRoot";
+import type { SceneObject } from "../../domain/objects/objectTypes";
+import type { ProjectDocument } from "../../domain/project/projectTypes";
 
 interface CanvasPanelProps {
-  project: ProjectDocument
-  selectedObjectId: string | null
-  onSelectObject: (id: string | null) => void
+  project: ProjectDocument;
+  selectedObjectId: string | null;
+  onSelectObject: (id: string | null) => void;
+  onUpdateObject: (objectId: string, patch: Partial<SceneObject>) => void;
+  onBeginInteraction: () => void;
+  onCommitInteraction: () => void;
 }
 
 export function CanvasPanel({
   project,
   selectedObjectId,
   onSelectObject,
+  onUpdateObject,
+  onBeginInteraction,
+  onCommitInteraction,
 }: CanvasPanelProps) {
   return (
     <div className="canvas-panel">
@@ -24,9 +31,12 @@ export function CanvasPanel({
             background={project.canvas.background}
             selectedObjectId={selectedObjectId}
             onSelectObject={onSelectObject}
+            onUpdateObject={onUpdateObject}
+            onBeginInteraction={onBeginInteraction}
+            onCommitInteraction={onCommitInteraction}
           />
         </div>
       </div>
     </div>
-  )
+  );
 }

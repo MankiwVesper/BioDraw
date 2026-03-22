@@ -1,28 +1,45 @@
-import type { MembraneObject } from '../../domain/objects/objectTypes'
+import type { PointerEvent as ReactPointerEvent } from "react";
+import type { MembraneObject } from "../../domain/objects/objectTypes";
 
 interface MembraneRendererProps {
-  object: MembraneObject
-  selected: boolean
-  onSelect: (id: string | null) => void
+  object: MembraneObject;
+  selected: boolean;
+  onSelect: (id: string | null) => void;
+  onDragStart?: (
+    event: ReactPointerEvent<SVGElement>,
+    objectId: string,
+    dragMode?: "move" | "arrow-start" | "arrow-end",
+  ) => void;
 }
 
 export function MembraneRenderer({
   object,
   selected,
   onSelect,
+  onDragStart,
 }: MembraneRendererProps) {
-  if (!object.visible) return null
+  if (!object.visible) return null;
 
-  const width = object.width ?? 0
-  const height = object.height ?? 0
+  const width = object.width ?? 240;
+  const height = object.height ?? 64;
 
   return (
     <g
       onClick={(event) => {
-        event.stopPropagation()
-        onSelect(object.id)
+        event.stopPropagation();
+        onSelect(object.id);
       }}
-      style={{ cursor: 'pointer' }}
+      onPointerDown={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onSelect(object.id);
+        onDragStart?.(event, object.id, "move");
+      }}
+      style={{
+        cursor: object.locked ? "default" : "move",
+        userSelect: "none",
+        WebkitUserSelect: "none",
+      }}
     >
       <rect
         x={object.x}
@@ -30,7 +47,7 @@ export function MembraneRenderer({
         width={width}
         height={height}
         fill="#fef3c7"
-        stroke={selected ? '#2563eb' : '#eab308'}
+        stroke={selected ? "#2563eb" : "#eab308"}
         strokeWidth={selected ? 4 : 2}
         rx="12"
       />
@@ -69,5 +86,5 @@ export function MembraneRenderer({
         </text>
       )}
     </g>
-  )
+  );
 }

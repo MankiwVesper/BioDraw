@@ -13,6 +13,12 @@ interface EditorLayoutProps {
   selectedObjectId: string | null;
   onSelectObject: (id: string | null) => void;
   onUpdateObject: (objectId: string, patch: Partial<SceneObject>) => void;
+  onPreviewObjectUpdate: (
+    objectId: string,
+    patch: Partial<SceneObject>,
+  ) => void;
+  onBeginInteraction: () => void;
+  onCommitInteraction: () => void;
   onDeleteObject: (objectId: string) => void;
   onDuplicateObject: (objectId: string) => void;
   onDeleteSelected: () => void;
@@ -28,6 +34,9 @@ export function EditorLayout({
   selectedObjectId,
   onSelectObject,
   onUpdateObject,
+  onPreviewObjectUpdate,
+  onBeginInteraction,
+  onCommitInteraction,
   onDeleteObject,
   onDuplicateObject,
   onDeleteSelected,
@@ -161,6 +170,9 @@ export function EditorLayout({
             project={project}
             selectedObjectId={selectedObjectId}
             onSelectObject={onSelectObject}
+            onUpdateObject={onPreviewObjectUpdate}
+            onBeginInteraction={onBeginInteraction}
+            onCommitInteraction={onCommitInteraction}
           />
         </div>
       </div>

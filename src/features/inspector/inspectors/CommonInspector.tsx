@@ -1,8 +1,8 @@
 import type { SceneObject } from "../../../domain/objects/objectTypes";
 import {
+  CheckboxInput,
   InlineField,
   NumberInput,
-  ReadonlyValue,
   Section,
   TextInput,
 } from "./shared";
@@ -46,7 +46,11 @@ export function CommonInspector({
           </InlineField>
 
           {hasLabelField(object) ? (
-            <InlineField label="标签" labelWidth={28}>
+            <InlineField
+              label="标签"
+              labelWidth={28}
+              hint={isLocked ? "对象已锁定，不能修改标签" : undefined}
+            >
               <TextInput
                 value={object.label ?? ""}
                 disabled={isLocked}
@@ -56,6 +60,32 @@ export function CommonInspector({
               />
             </InlineField>
           ) : null}
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+              gap: 6,
+            }}
+          >
+            <InlineField label="可见" labelWidth={28}>
+              <CheckboxInput
+                checked={object.visible}
+                onChange={(checked) =>
+                  onUpdateObject(object.id, { visible: checked })
+                }
+              />
+            </InlineField>
+
+            <InlineField label="锁定" labelWidth={28}>
+              <CheckboxInput
+                checked={Boolean(object.locked)}
+                onChange={(checked) =>
+                  onUpdateObject(object.id, { locked: checked })
+                }
+              />
+            </InlineField>
+          </div>
         </div>
       </Section>
 
@@ -91,8 +121,16 @@ export function CommonInspector({
             />
           </InlineField>
 
-          <InlineField label="层级" labelWidth={28}>
-            <ReadonlyValue value={object.zIndex ?? "-"} />
+          <InlineField
+            label="层级"
+            labelWidth={28}
+            hint={isLocked ? "锁定时不可修改" : undefined}
+          >
+            <NumberInput
+              value={object.zIndex ?? 0}
+              disabled={isLocked}
+              onChange={(value) => onUpdateObject(object.id, { zIndex: value })}
+            />
           </InlineField>
         </div>
 
@@ -105,16 +143,42 @@ export function CommonInspector({
             gap: 6,
           }}
         >
-          <InlineField label="宽" labelWidth={16}>
-            <ReadonlyValue value={object.width ?? "-"} />
+          <InlineField
+            label="宽"
+            labelWidth={16}
+            hint={isLocked ? "锁定时不可修改" : undefined}
+          >
+            <NumberInput
+              value={object.width ?? 0}
+              disabled={isLocked}
+              onChange={(value) => onUpdateObject(object.id, { width: value })}
+            />
           </InlineField>
 
-          <InlineField label="高" labelWidth={16}>
-            <ReadonlyValue value={object.height ?? "-"} />
+          <InlineField
+            label="高"
+            labelWidth={16}
+            hint={isLocked ? "锁定时不可修改" : undefined}
+          >
+            <NumberInput
+              value={object.height ?? 0}
+              disabled={isLocked}
+              onChange={(value) => onUpdateObject(object.id, { height: value })}
+            />
           </InlineField>
 
-          <InlineField label="旋转" labelWidth={28}>
-            <ReadonlyValue value={object.rotation ?? "-"} />
+          <InlineField
+            label="旋转"
+            labelWidth={28}
+            hint={isLocked ? "锁定时不可修改" : undefined}
+          >
+            <NumberInput
+              value={object.rotation ?? 0}
+              disabled={isLocked}
+              onChange={(value) =>
+                onUpdateObject(object.id, { rotation: value })
+              }
+            />
           </InlineField>
         </div>
       </Section>

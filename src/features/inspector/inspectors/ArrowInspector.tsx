@@ -7,14 +7,19 @@ import {
   FieldGrid,
   FormField,
   NumberInput,
-  ReadonlyValue,
   Section,
+  SelectInput,
 } from "./shared";
 
 interface ArrowInspectorProps {
   object: ArrowObject;
   onUpdateObject: (objectId: string, patch: Partial<SceneObject>) => void;
 }
+
+const arrowStyleOptions = [
+  { label: "实线", value: "solid" },
+  { label: "虚线", value: "dashed" },
+];
 
 export function ArrowInspector({
   object,
@@ -24,11 +29,17 @@ export function ArrowInspector({
     <Section title="箭头属性">
       <FieldGrid columns={2}>
         <FormField label="终点 X2">
-          <ReadonlyValue value={object.x2} />
+          <NumberInput
+            value={object.x2}
+            onChange={(value) => onUpdateObject(object.id, { x2: value })}
+          />
         </FormField>
 
         <FormField label="终点 Y2">
-          <ReadonlyValue value={object.y2} />
+          <NumberInput
+            value={object.y2}
+            onChange={(value) => onUpdateObject(object.id, { y2: value })}
+          />
         </FormField>
       </FieldGrid>
 
@@ -56,7 +67,15 @@ export function ArrowInspector({
         </FormField>
 
         <FormField label="线型">
-          <ReadonlyValue value={object.arrowStyle ?? "-"} />
+          <SelectInput
+            value={object.arrowStyle ?? "solid"}
+            options={arrowStyleOptions}
+            onChange={(value) =>
+              onUpdateObject(object.id, {
+                arrowStyle: value as ArrowObject["arrowStyle"],
+              })
+            }
+          />
         </FormField>
       </FieldGrid>
     </Section>
