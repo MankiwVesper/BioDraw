@@ -19,7 +19,7 @@ function getArrowHeadPoints(
   y1: number,
   x2: number,
   y2: number,
-  size: number,
+  size = 12,
 ) {
   const angle = Math.atan2(y2 - y1, x2 - x1);
   const backX = x2 - Math.cos(angle) * size;

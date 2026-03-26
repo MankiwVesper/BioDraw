@@ -10,8 +10,8 @@ export function Section(props: {
   return (
     <section
       style={{
-        marginBottom: 8,
-        padding: 9,
+        marginBottom: 6,
+        padding: 7,
         border: "1px solid #e5e7eb",
         borderRadius: 8,
         background: "#ffffff",
@@ -23,7 +23,7 @@ export function Section(props: {
           alignItems: "baseline",
           justifyContent: "space-between",
           gap: 6,
-          marginBottom: 6,
+          marginBottom: 4,
         }}
       >
         <div
@@ -71,7 +71,7 @@ export function FieldGrid(props: { children: ReactNode; columns?: 1 | 2 | 3 }) {
       style={{
         display: "grid",
         gridTemplateColumns,
-        gap: 6,
+        gap: 4,
       }}
     >
       {props.children}
@@ -92,7 +92,7 @@ export function FormField(props: {
         style={{
           fontSize: 10,
           color: "#6b7280",
-          marginBottom: 3,
+          marginBottom: 2,
           lineHeight: 1.15,
           whiteSpace: "nowrap",
           overflow: "hidden",
@@ -127,7 +127,7 @@ export function InlineField(props: {
   labelWidth?: number;
   hint?: string;
 }) {
-  const { label, children, labelWidth = 40, hint } = props;
+  const { label, children, labelWidth = 36, hint } = props;
 
   return (
     <div style={{ minWidth: 0 }}>
@@ -136,14 +136,14 @@ export function InlineField(props: {
           display: "grid",
           gridTemplateColumns: `${labelWidth}px minmax(0, 1fr)`,
           alignItems: "center",
-          gap: 3,
+          gap: 2,
         }}
       >
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            height: 24,
+            height: 22,
             fontSize: 12,
             color: "#4b5563",
             whiteSpace: "nowrap",
@@ -192,9 +192,9 @@ export function ReadonlyValue(props: { value: ReactNode }) {
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
-  height: 24,
+  height: 22,
   boxSizing: "border-box",
-  padding: "8px 8px",
+  padding: "4px 8px",
   fontSize: 12,
   border: "1px solid #d1d5db",
   borderRadius: 7,
@@ -297,7 +297,7 @@ export function CheckboxInput(props: {
   return (
     <label
       style={{
-        minHeight: 28,
+        minHeight: 24,
         display: "inline-flex",
         alignItems: "center",
         gap: 6,
@@ -368,7 +368,7 @@ export function ColorInput(props: {
         title="选择颜色"
         style={{
           width: 30,
-          height: 28,
+          height: 24,
           padding: 0,
           border: "1px solid #d1d5db",
           borderRadius: 7,
@@ -402,7 +402,7 @@ export function ActionButton(props: {
       disabled={props.disabled}
       title={props.title}
       style={{
-        height: 28,
+        height: 24,
         padding: "0 8px",
         fontSize: 11,
         fontWeight: 600,

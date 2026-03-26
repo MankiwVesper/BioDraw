@@ -324,6 +324,21 @@ src/
     canvas/
       CanvasPanel.tsx
 
+  features/
+    inspector/
+      InspectorPanel.tsx
+      renderInspector.tsx
+      inspectors/
+        CommonInspector.tsx
+        MembraneInspector.tsx
+        RegionInspector.tsx
+        ParticleInspector.tsx
+        ProteinInspector.tsx
+        MarkerInspector.tsx
+        TextInspector.tsx
+        ArrowInspector.tsx
+        shared.tsx
+
   canvas/
     CanvasRoot.tsx
     renderSceneObject.tsx
@@ -921,6 +936,10 @@ export type RightInspectorTab =
   | 'project'
 ```
 
+> Inspector 当前实现状态（基于 `src/features/inspector`）：
+> - 已实现：`selectedObjectId` 驱动单一属性面板（properties）。
+> - 待实现：`animation` / `project` 两个 inspector tab 的 UI 与切换状态。
+
 ### 播放状态
 
 ```ts
@@ -1177,8 +1196,15 @@ src/
 - 右侧能显示对象信息
 
 ### 阶段 6：属性查看 / 修改
-- 面板能显示并修改基础属性
-- 画布更新正确
+- 已实现：
+  - 右侧属性面板可根据 `selectedObjectId` 显示对象标题、类型、锁定标记
+  - 通用属性可编辑：`name`、`label(如该类型支持)`、`visible`、`locked`、`x`、`y`、`zIndex`、`width`、`height`、`rotation`
+  - 对象类型专属属性可编辑（`membrane/region/particle/protein/marker/text/arrow`）
+  - 锁定态限制已生效：仅允许切换 `visible` 与 `locked`，并禁用复制/删除与专属属性编辑
+  - 属性修改能回写对象并反映到画布渲染
+- 待实现：
+  - inspector 多 tab（`animation` / `project`）编辑能力
+  - 部分对象字段尚未在 inspector 暴露（例如 `particle.count`、`particle.movable`、`sourceRegionId/targetRegionId`）
 
 ### 阶段 7：步骤显示
 - 底部出现步骤栏

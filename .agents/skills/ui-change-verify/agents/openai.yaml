@@ -1,0 +1,7 @@
+interface:
+  display_name: "前端改动验证"
+  short_description: "对 React / TS / UI 改动执行基础验证并标准化汇报"
+  default_prompt: "先识别影响范围，再运行基础验证命令，最后按固定结构汇报结果"
+
+policy:
+  allow_implicit_invocation: false

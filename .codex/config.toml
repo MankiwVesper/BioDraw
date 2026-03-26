@@ -1,0 +1,48 @@
+# BioDraw repo-scoped Codex config
+# 只放这个仓库里值得固定的行为，不放太个人化的偏好。
+
+# 让 Codex 读取更多项目规则文本。
+# 官方示例默认是 32768；这里我建议给 BioDraw 留更大余量。
+project_doc_max_bytes = 65536
+
+# 让代码/文件引用优先回到 VS Code 打开。
+file_opener = "vscode"
+
+# 明确项目根的识别方式。
+project_root_markers = [".git"]
+
+# 这个仓库里默认允许在工作区内写入，但仍保留审批。
+# 对开发型仓库更顺手；超出工作区或更高风险动作时再请求批准。
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+# 工作区写入沙箱的附加设置。
+[sandbox_workspace_write]
+writable_roots = []
+network_access = false
+
+# 显式启用你已经做好的 skills。
+# 注意：path 指向的是“skill 文件夹”，不是 SKILL.md 文件本身。
+[[skills.config]]
+path = ".agents/skills/ts-error-fixer"
+enabled = true
+
+[[skills.config]]
+path = ".agents/skills/spec-sync"
+enabled = true
+
+[[skills.config]]
+path = ".agents/skills/ui-change-verify"
+enabled = true
+
+[[skills.config]]
+path = ".agents/skills/change-summary"
+enabled = true
+
+[[skills.config]]
+path = ".agents/skills/git-commit-prep"
+enabled = true
+
+[[skills.config]]
+path = ".agents/skills/ui-panel-refine"
+enabled = true

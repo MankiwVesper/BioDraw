@@ -1,0 +1,7 @@
+interface:
+  display_name: "变更总结"
+  short_description: "把本次真实改动整理成可复用的结构化摘要"
+  default_prompt: "先读取本次实际改动和验证结果，再按固定结构输出变更摘要"
+
+policy:
+  allow_implicit_invocation: false

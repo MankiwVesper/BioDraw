@@ -30,12 +30,12 @@ export function CommonInspector({
         <div
           style={{
             display: "grid",
-            gap: 6,
+            gap: 4,
           }}
         >
           <InlineField
             label="名称"
-            labelWidth={28}
+            labelWidth={32}
             hint={isLocked ? "对象已锁定，不能修改名称" : undefined}
           >
             <TextInput
@@ -48,7 +48,7 @@ export function CommonInspector({
           {hasLabelField(object) ? (
             <InlineField
               label="标签"
-              labelWidth={28}
+              labelWidth={32}
               hint={isLocked ? "对象已锁定，不能修改标签" : undefined}
             >
               <TextInput
@@ -65,10 +65,10 @@ export function CommonInspector({
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-              gap: 6,
+              gap: 4,
             }}
           >
-            <InlineField label="可见" labelWidth={28}>
+            <InlineField label="可见" labelWidth={32}>
               <CheckboxInput
                 checked={object.visible}
                 onChange={(checked) =>
@@ -77,7 +77,7 @@ export function CommonInspector({
               />
             </InlineField>
 
-            <InlineField label="锁定" labelWidth={28}>
+            <InlineField label="锁定" labelWidth={32}>
               <CheckboxInput
                 checked={Boolean(object.locked)}
                 onChange={(checked) =>
@@ -93,8 +93,8 @@ export function CommonInspector({
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-            gap: 6,
+            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+            gap: 4,
           }}
         >
           <InlineField
@@ -123,7 +123,7 @@ export function CommonInspector({
 
           <InlineField
             label="层级"
-            labelWidth={28}
+            labelWidth={32}
             hint={isLocked ? "锁定时不可修改" : undefined}
           >
             <NumberInput
@@ -134,13 +134,13 @@ export function CommonInspector({
           </InlineField>
         </div>
 
-        <div style={{ height: 6 }} />
+        <div style={{ height: 4 }} />
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-            gap: 6,
+            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+            gap: 4,
           }}
         >
           <InlineField
@@ -169,7 +169,7 @@ export function CommonInspector({
 
           <InlineField
             label="旋转"
-            labelWidth={28}
+            labelWidth={32}
             hint={isLocked ? "锁定时不可修改" : undefined}
           >
             <NumberInput

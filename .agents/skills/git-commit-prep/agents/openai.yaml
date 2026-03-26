@@ -1,0 +1,7 @@
+interface:
+  display_name: "提交准备"
+  short_description: "为本次真实改动生成可提交的 commit 说明"
+  default_prompt: "先读取本次真实改动和验证结果，再生成 commit message 候选和提交前建议"
+
+policy:
+  allow_implicit_invocation: false
