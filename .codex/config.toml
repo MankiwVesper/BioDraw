@@ -46,3 +46,7 @@ enabled = true
 [[skills.config]]
 path = ".agents/skills/ui-panel-refine"
 enabled = true
+
+[[skills.config]]
+path = ".agents/skills/repo-explore"
+enabled = true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "仓库探索"
+  short_description: "先读懂仓库结构、入口文件和调用链，再决定下一步"
+  default_prompt: "先围绕目标探索相关代码，不要修改文件，输出关键文件、职责、调用链和下一步建议"
+
+policy:
+  allow_implicit_invocation: false
